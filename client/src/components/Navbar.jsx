@@ -1,7 +1,7 @@
 export const Navbar = () => {
   return (
     <>
-      <div className="bg-zinc-500">Hola</div>
+      <div className="bg-zinc-500">Hola puta</div>
     </>
   );
 };
