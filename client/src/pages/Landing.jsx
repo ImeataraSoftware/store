@@ -1,5 +1,10 @@
-import styled from "styled-components";
+import { Navbar } from "../components/Navbar";
 
 export const Landing = () => {
-  return <div>Landing</div>;
+  return (
+    <>
+      <Navbar />
+      <div>Landing</div>
+    </>
+  );
 };

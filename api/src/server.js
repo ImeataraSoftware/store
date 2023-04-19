@@ -6,19 +6,17 @@ import cors from "cors";
 
 import router from "./routes/index.js";
 
+const { sequelize } = require("./database.js");
+
 const server = express();
 
-const port = 3000;
+const port = 3001;
 
 server.use(bodyParser.urlencoded({ extended: false }));
 
 server.use(bodyParser.json());
 
 server.use(cors());
-
-// server.use(cors({
-//   origin: "http://example.com"
-// }));
 
 server.use("/", router);
 
@@ -27,6 +25,14 @@ server.use((err, req, res, next) => {
   res.status(500).send("Internal Server Error");
 });
 
-server.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("Synchronized tables");
+    server.listen(port, () => {
+      console.log(`Listening on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(`Error synchronizing models: ${err.message}`);
+  });

@@ -1,5 +1,7 @@
-import styled from "styled-components";
-
 export const Navbar = () => {
-  return <div>Navbar</div>;
+  return (
+    <>
+      <div className="bg-zinc-500">Hola</div>
+    </>
+  );
 };
