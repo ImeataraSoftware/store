@@ -1,9 +1,25 @@
-import { Router } from "express";
+const router = require("express").Router();
 
-// import example from "./example.js";
+const fs = require("fs");
 
-const router = Router();
+const path = require("path");
 
-// router.use("/example", example);
+const routerPath = path.join(__dirname, "/");
 
-export default router;
+fs.readdirSync(routerPath)
+  .filter((file) => {
+    const fileName = path.basename(file, ".js");
+
+    return fileName !== "index";
+  })
+  .forEach((file) => {
+    const routerModule = require(path.join(routerPath, file));
+
+    const routerName = path.basename(file, ".js");
+
+    router.use(`/${routerName}`, routerModule);
+
+    console.log("--->", routerName);
+  });
+
+module.exports = router;

@@ -1,11 +1,8 @@
 require("dotenv").config();
 
 const fs = require("fs");
-
 const path = require("path");
-
 const { Sequelize } = require("sequelize");
-postgres://store:@/
 
 const sequelize = new Sequelize({
   dialect: "postgres",
@@ -25,7 +22,6 @@ const sequelize = new Sequelize({
 });
 
 const basename = path.basename(__filename);
-
 const modelDefiners = [];
 
 fs.readdirSync(path.join(__dirname, "/models"))
@@ -39,13 +35,6 @@ fs.readdirSync(path.join(__dirname, "/models"))
 
 modelDefiners.forEach((model) => model(sequelize));
 
-let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [
-  entry[0][0].toUpperCase() + entry[0].slice(1),
-  entry[1],
-]);
-sequelize.models = Object.fromEntries(capsEntries);
+const { User, Product } = sequelize.models;
 
-const {} = sequelize.models;
-
-module.exports = { sequelize, ...sequelize.models };
+module.exports = { sequelize, User, Product };

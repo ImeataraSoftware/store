@@ -1,10 +1,12 @@
-import express from "express";
+require("dotenv").config();
 
-import bodyParser from "body-parser";
+const express = require("express");
 
-import cors from "cors";
+const bodyParser = require("body-parser");
 
-import router from "./routes/index.js";
+const cors = require("cors");
+
+const router = require("./routes/index.js");
 
 const { sequelize } = require("./database.js");
 
