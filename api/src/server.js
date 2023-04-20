@@ -28,7 +28,7 @@ server.use((err, req, res, next) => {
 });
 
 sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     console.log("Synchronized tables");
     server.listen(port, () => {
