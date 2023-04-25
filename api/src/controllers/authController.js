@@ -15,9 +15,24 @@ const authGoogle = async (req, res) => {
     const { code } = req.query;
 
     if (!code) {
-      res.redirect(authorizeUrl);
+      res.redirect(authUrl);
     }
-  } catch (error) {}
+
+    const { tokens } = await oauth2Client.getToken(code);
+
+    oauth2Client.setCredentials(tokens);
+
+    const oauth2 = google.oauth2({
+      auth: oauth2Client,
+      version: 'v2',
+    });
+
+    const { data } = await oauth2.userinfo.get();
+
+    res.json({ data });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const register = async (req, res) => {};
