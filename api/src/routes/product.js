@@ -1,9 +1,5 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const {} = require("../controllers/productController.js");
-
-router.get("/", async (req, res) => {
-  res.send("Hello");
-});
+const {} = require('../controllers/productController.js');
 
 module.exports = router;
