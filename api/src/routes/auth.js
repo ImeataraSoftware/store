@@ -6,7 +6,7 @@ const {
   login,
 } = require('../controllers/authController.js');
 
-router.post('/google', authGoogle);
+router.post('/auth-google', authGoogle);
 
 router.post('/register', register);
 
