@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { Navbar } from "../components/Navbar";
 
 import { Footer } from "../components/Footer";
@@ -5,21 +7,12 @@ import { Footer } from "../components/Footer";
 export const Landing = () => {
   return (
     <>
-      <Navbar />
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content text-center">
-          <div className="max-w-md">
-            <h1 className="text-5xl font-bold">Hello there</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-            <button className="btn btn-primary">Get Started puto</button>
-          </div>
+      <div className="h-screen">
+        <Navbar />
+        <div className="h-fit" style={{ height: "calc(100vh - 64px)" }}>
+          <Link to="/home">Get Started</Link>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

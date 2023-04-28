@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
-  "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -14,9 +15,15 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "sequelize": "^6.30.0"
+    "googleapis": "^118.0.0",
+    "pg": "^8.10.0",
+    "sequelize": "^6.30.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.7"
   }
 }
