@@ -1,15 +1,18 @@
 const router = require('express').Router();
 
 const {
-  authGoogle,
   register,
-  login,
+  logIn,
+  logInGoogle,
+  logOut,
 } = require('../controllers/authController.js');
-
-router.post('/auth-google', authGoogle);
 
 router.post('/register', register);
 
-router.post('/login', login);
+router.post('/login', logIn);
+
+router.get('/auth-google', logInGoogle);
+
+router.post('/logout', logOut);
 
 module.exports = router;

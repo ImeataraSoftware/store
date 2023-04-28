@@ -2,7 +2,11 @@ const { google } = require('googleapis');
 
 const { oauth2Client } = require('../middlewares/google.js');
 
-const authGoogle = async (req, res) => {
+const register = async (req, res) => {};
+
+const logIn = async (req, res) => {};
+
+const logInGoogle = async (req, res) => {
   try {
     const authUrl = oauth2Client.generateAuthUrl({
       access_type: 'offline',
@@ -12,31 +16,33 @@ const authGoogle = async (req, res) => {
       ],
     });
 
-    const { code } = req.query;
+    const { code } = await req.query;
 
     if (!code) {
       res.redirect(authUrl);
     }
 
-    const { tokens } = await oauth2Client.getToken(code);
+    if (code) {
+      const { tokens } = await oauth2Client.getToken(code);
 
-    oauth2Client.setCredentials(tokens);
+      oauth2Client.setCredentials(tokens);
 
-    const oauth2 = google.oauth2({
-      auth: oauth2Client,
-      version: 'v2',
-    });
+      const oauth2 = google.oauth2({
+        auth: oauth2Client,
+        version: 'v2',
+      });
 
-    const { data } = await oauth2.userinfo.get();
+      const { data } = await oauth2.userinfo.get();
 
-    res.json({ data });
+      res.send(data);
+    }
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: 'Error' });
   }
 };
+// http://localhost:3001/auth/auth-google
 
-const register = async (req, res) => {};
+const logOut = async (req, res) => {};
 
-const login = async (req, res) => {};
-
-module.exports = { authGoogle, register, login };
+module.exports = { register, logIn, logInGoogle, logOut };
