@@ -1,9 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const url = `http://localhost:3001/` || `http://localhost:3001/`;
 
 export const Auth = createApi({
-  reducerPath: "auth",
+  reducerPath: 'auth',
   baseQuery: fetchBaseQuery({ baseUrl: url }),
   endpoints: (builder) => ({
     getPokemonByName: builder.query({
