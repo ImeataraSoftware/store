@@ -7,9 +7,9 @@ import { Footer } from "../components/Footer";
 export const Landing = () => {
   return (
     <>
-      <div className="h-screen">
+      <div>
         <Navbar />
-        <div className="h-fit" style={{ height: "calc(100vh - 64px)" }}>
+        <div className="h-fit mt-16" style={{ height: "calc(100vh - 64px)" }}>
           <Link to="/home">Get Started</Link>
         </div>
       </div>
