@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const {
   register,
+  registerGoogle,
   logIn,
   logInGoogle,
   logOut,
@@ -9,9 +10,11 @@ const {
 
 router.post('/register', register);
 
+router.get('/register-google', registerGoogle);
+
 router.post('/login', logIn);
 
-router.get('/auth-google', logInGoogle);
+router.get('/login-google', logInGoogle);
 
 router.post('/logout', logOut);
 

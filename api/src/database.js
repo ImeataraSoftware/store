@@ -38,7 +38,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 
 modelDefiners.forEach((model) => model(sequelize));
 
-const { Category, User, Product } = sequelize.models;
+const { Category, Customer, Order, Product } = sequelize.models;
 
 // // Category - Product
 
