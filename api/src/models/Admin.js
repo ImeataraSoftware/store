@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Customer', {
+  sequelize.define('Admin', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -11,10 +11,5 @@ module.exports = (sequelize) => {
     lastName: { type: DataTypes.STRING },
     email: { type: DataTypes.STRING },
     password: { type: DataTypes.STRING },
-    address: { type: DataTypes.STRING },
-    city: { type: DataTypes.STRING },
-    zipCode: { type: DataTypes.STRING },
-    country: { type: DataTypes.STRING },
-    phone: { type: DataTypes.STRING },
   });
 };
