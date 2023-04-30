@@ -10,7 +10,7 @@ import { Home } from '../pages/Home';
 
 import { LogIn } from '../pages/LogIn';
 
-import { Register } from '../pages/Register';
+import { LogUp } from '../pages/LogUp';
 
 export const router = createBrowserRouter([
   {
@@ -31,8 +31,8 @@ export const router = createBrowserRouter([
         element: <LogIn />,
       },
       {
-        path: '/register',
-        element: <Register />,
+        path: '/logup',
+        element: <LogUp />,
       },
     ],
   },

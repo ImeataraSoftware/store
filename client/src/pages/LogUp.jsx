@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 
 import { Navbar } from '../components/Navbar';
 
-export const Register = () => {
+export const LogUp = () => {
   const navigate = useNavigate();
 
   const [register, { isLoading }] = useRegisterMutation();
@@ -28,6 +28,8 @@ export const Register = () => {
   });
 
   const [error, setError] = useState(null);
+
+  const [customer, setCustomer] = useState(null);
 
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -52,12 +54,16 @@ export const Register = () => {
       } else {
         setError(null);
 
+        setCustomer(result.data.response);
+
         swal('Good job!', 'You clicked the button!', 'success');
 
-        navigate('/home');
+        // navigate('/home');
       }
     });
   };
+
+  console.log(customer);
 
   return (
     <>
@@ -132,7 +138,7 @@ export const Register = () => {
               placeholder="Phone"
             />
             <button onClick={handleSubmit} type="submit">
-              Register
+              Log Up
             </button>
             {error && <span>{error}</span>}
           </form>

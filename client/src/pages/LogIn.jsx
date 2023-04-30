@@ -1,3 +1,5 @@
+import CryptoJS from 'crypto-js';
+
 import { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,6 +9,9 @@ import { useLoginMutation } from '../services/Auth';
 import { Navbar } from '../components/Navbar';
 
 export const LogIn = () => {
+  const { VITE_APP_JWT, VITE_APP_CRYPTO_KEY, VITE_APP_CRYPTO_IV } = import.meta
+    .env;
+
   const navigate = useNavigate();
 
   const [login, { isLoading }] = useLoginMutation();
@@ -20,11 +25,11 @@ export const LogIn = () => {
 
   const [error, setError] = useState(null);
 
+  const [customer, setCustomer] = useState(null);
+
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-
-  console.log(input);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,12 +43,26 @@ export const LogIn = () => {
       } else {
         setError(null);
 
+        setCustomer(result.data.response);
+
         swal('Good job!', 'You clicked the button!', 'success');
 
-        navigate('/home');
+        // navigate('/home');
       }
     });
   };
+
+  // if (customer !== null) {
+  //   try {
+  //     const bytes = CryptoJS.AES.decrypt(customer.email, VITE_APP_CRYPTO_KEY);
+
+  //     const decryptedId = bytes.toString(CryptoJS.enc.Utf8);
+
+  //     console.log(decryptedId);
+  //   } catch (error) {
+  //     console.log('Error al desencriptar:', error);
+  //   }
+  // }
 
   return (
     <>
@@ -73,7 +92,7 @@ export const LogIn = () => {
             </button>
             {error && <span>{error}</span>}
           </form>
-          <Link to="/register">Register</Link>
+          <Link to="/logup">Log Up</Link>
         </div>
       </div>
     </>
