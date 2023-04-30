@@ -24,17 +24,17 @@ server.use('/', router);
 
 server.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).send('Internal Server Error');
+  res.status(500).send('Internal Server Error.');
 });
 
 sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
-    console.log('Synchronized tables');
+    console.log('Synchronized tables.');
     server.listen(port, () => {
-      console.log(`Listening on port ${port}`);
+      console.log(`Listening on port ${port}.`);
     });
   })
   .catch((err) => {
-    console.log(`Error synchronizing models: ${err.message}`);
+    console.log(`Error synchronizing models: ${err.message}.`);
   });

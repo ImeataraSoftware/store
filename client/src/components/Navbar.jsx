@@ -6,7 +6,7 @@ export const Navbar = () => {
       <div className="h-[64px] fixed left-0 top-0 right-0">
         <div className="p-5 flex justify-between">
           <Link to="/home">Logo</Link>
-          <Link to="/login">LogIn</Link>
+          <Link to="/login">Log In</Link>
         </div>
       </div>
     </>
