@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const { Customer } = require('../database.js');
 
-const register = async (req, res) => {
+const logUp = async (req, res) => {
   try {
     const {
       firstName,
@@ -101,7 +101,7 @@ const register = async (req, res) => {
   }
 };
 
-const registerGoogle = async (req, res) => {};
+const logupGoogle = async (req, res) => {};
 
 const logIn = async (req, res) => {
   try {
@@ -156,4 +156,4 @@ const logInGoogle = async (req, res) => {};
 
 const logOut = async (req, res) => {};
 
-module.exports = { register, registerGoogle, logIn, logInGoogle, logOut };
+module.exports = { logUp, logupGoogle, logIn, logInGoogle, logOut };

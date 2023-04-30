@@ -1,16 +1,16 @@
 const router = require('express').Router();
 
 const {
-  register,
-  registerGoogle,
+  logUp,
+  logupGoogle,
   logIn,
   logInGoogle,
   logOut,
 } = require('../controllers/authController.js');
 
-router.post('/register', register);
+router.post('/logup', logUp);
 
-router.get('/register-google', registerGoogle);
+router.get('/logup-google', logupGoogle);
 
 router.post('/login', logIn);
 
