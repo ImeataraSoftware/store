@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,jsx}"],
+  content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [require('daisyui')],
 
   daisyui: {
     styled: true,
@@ -13,7 +13,7 @@ export default {
     utils: true,
     logs: true,
     rtl: false,
-    prefix: "",
-    darkTheme: ["lofi", "black"],
+    prefix: '',
+    darkTheme: ['lofi', 'black'],
   },
 };

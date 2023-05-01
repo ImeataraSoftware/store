@@ -1,20 +1,20 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from 'react-router-dom';
 
-import { Layout } from "../layout/Layout";
+import { Layout } from '../layout/Layout';
 
-import { NotFound } from "../pages/NotFound";
+import { NotFound } from '../pages/NotFound';
 
-import { Landing } from "../pages/Landing";
+import { Landing } from '../pages/Landing';
 
-import { Home } from "../pages/Home";
+import { Home } from '../pages/Home';
 
-import { LogIn } from "../pages/LogIn";
+import { LogIn } from '../pages/LogIn';
 
-import { Register } from "../pages/Register";
+import { LogUp } from '../pages/LogUp';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     errorElement: <NotFound />,
     children: [
@@ -23,16 +23,16 @@ export const router = createBrowserRouter([
         element: <Landing />,
       },
       {
-        path: "/home",
+        path: '/home',
         element: <Home />,
       },
       {
-        path: "/login",
+        path: '/login',
         element: <LogIn />,
       },
       {
-        path: "/register",
-        element: <Register />,
+        path: '/logup',
+        element: <LogUp />,
       },
     ],
   },

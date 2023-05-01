@@ -1,18 +1,18 @@
 const router = require('express').Router();
 
 const {
-  register,
+  logUp,
+  logupGoogle,
   logIn,
   logInGoogle,
-  logOut,
 } = require('../controllers/authController.js');
 
-router.post('/register', register);
+router.post('/logup', logUp);
+
+router.get('/logup-google', logupGoogle);
 
 router.post('/login', logIn);
 
-router.get('/auth-google', logInGoogle);
-
-router.post('/logout', logOut);
+router.get('/login-google', logInGoogle);
 
 module.exports = router;

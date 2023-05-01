@@ -2,20 +2,29 @@ import { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useLoginMutation } from '../services/Auth';
+import { useRegisterMutation } from '../services/Auth';
+
+import swal from 'sweetalert';
 
 import { Navbar } from '../components/Navbar';
 
-export const LogIn = () => {
+export const LogUp = () => {
   const navigate = useNavigate();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [register, { isLoading }] = useRegisterMutation();
 
   if (isLoading) console.log('Loading...');
 
   const [input, setInput] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
+    address: '',
+    city: '',
+    zipCode: '',
+    country: '',
+    phone: '',
   });
 
   const [error, setError] = useState(null);
@@ -27,9 +36,16 @@ export const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    login({
+    register({
+      firstName: input.firstName,
+      lastName: input.lastName,
       email: input.email,
       password: input.password,
+      address: input.address,
+      city: input.city,
+      zipCode: input.zipCode,
+      country: input.country,
+      phone: input.phone,
     }).then((result) => {
       if (result.error) {
         setError(result.error.data.message);
@@ -63,26 +79,6 @@ export const LogIn = () => {
     });
   };
 
-  // for (let key in localStorage) {
-  //   console.log(key, localStorage.getItem(key));
-  // }
-
-  // import CryptoJS from 'crypto-js';
-
-  // const { VITE_APP_JWT, VITE_APP_CRYPTO_KEY } = import.meta.env;
-
-  // if (customer !== null) {
-  //   try {
-  //     const bytes = CryptoJS.AES.decrypt(customer.email, VITE_APP_CRYPTO_KEY);
-
-  //     const decryptedId = bytes.toString(CryptoJS.enc.Utf8);
-
-  //     console.log(decryptedId);
-  //   } catch (error) {
-  //     console.log('Error al desencriptar:', error);
-  //   }
-  // }
-
   return (
     <>
       <div>
@@ -92,6 +88,20 @@ export const LogIn = () => {
           style={{ height: 'calc(100vh - 64px)' }}
         >
           <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col">
+            <input
+              onChange={handleInput}
+              name="firstName"
+              value={input.firstName}
+              type="text"
+              placeholder="First Name"
+            />
+            <input
+              onChange={handleInput}
+              name="lastName"
+              value={input.lastName}
+              type="text"
+              placeholder="Last Name"
+            />
             <input
               onChange={handleInput}
               name="email"
@@ -106,12 +116,47 @@ export const LogIn = () => {
               type="password"
               placeholder="Password"
             />
+            <input
+              onChange={handleInput}
+              name="address"
+              value={input.address}
+              type="text"
+              placeholder="Address"
+            />
+            <input
+              onChange={handleInput}
+              name="city"
+              value={input.city}
+              type="text"
+              placeholder="City"
+            />
+            <input
+              onChange={handleInput}
+              name="zipCode"
+              value={input.zipCode}
+              type="text"
+              placeholder="Zip Code"
+            />
+            <input
+              onChange={handleInput}
+              name="country"
+              value={input.country}
+              type="text"
+              placeholder="Country"
+            />
+            <input
+              onChange={handleInput}
+              name="phone"
+              value={input.phone}
+              type="text"
+              placeholder="Phone"
+            />
             <button onClick={handleSubmit} type="submit">
-              Log In
+              Log Up
             </button>
             {error && <span>{error}</span>}
           </form>
-          <Link to="/logup">Log Up</Link>
+          <Link to="/login">Log In</Link>
         </div>
       </div>
     </>
