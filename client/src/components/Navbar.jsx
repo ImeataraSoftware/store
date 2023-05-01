@@ -5,7 +5,7 @@ export const Navbar = () => {
     <>
       <div className="h-[64px] fixed left-0 top-0 right-0">
         <div className="p-5 flex justify-between">
-          <div>Logo</div>
+          <div>logo</div>
           <div>Login</div>
         </div>
       </div>
