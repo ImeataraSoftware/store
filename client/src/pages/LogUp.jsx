@@ -29,8 +29,6 @@ export const LogUp = () => {
 
   const [error, setError] = useState(null);
 
-  const [customer, setCustomer] = useState(null);
-
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -54,16 +52,32 @@ export const LogUp = () => {
       } else {
         setError(null);
 
-        setCustomer(result.data.response);
+        localStorage.setItem('id', result.data.response.id);
+
+        localStorage.setItem('firstName', result.data.response.firstName);
+
+        localStorage.setItem('lastName', result.data.response.lastName);
+
+        localStorage.setItem('email', result.data.response.email);
+
+        localStorage.setItem('address', result.data.response.address);
+
+        localStorage.setItem('city', result.data.response.city);
+
+        localStorage.setItem('zipCode', result.data.response.zipCode);
+
+        localStorage.setItem('country', result.data.response.country);
+
+        localStorage.setItem('phone', result.data.response.phone);
+
+        localStorage.setItem('token', result.data.response.token);
 
         swal('Good job!', 'You clicked the button!', 'success');
 
-        // navigate('/home');
+        navigate('/home');
       }
     });
   };
-
-  console.log(customer);
 
   return (
     <>

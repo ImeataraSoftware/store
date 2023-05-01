@@ -1,5 +1,3 @@
-import CryptoJS from 'crypto-js';
-
 import { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,9 +7,6 @@ import { useLoginMutation } from '../services/Auth';
 import { Navbar } from '../components/Navbar';
 
 export const LogIn = () => {
-  const { VITE_APP_JWT, VITE_APP_CRYPTO_KEY, VITE_APP_CRYPTO_IV } = import.meta
-    .env;
-
   const navigate = useNavigate();
 
   const [login, { isLoading }] = useLoginMutation();
@@ -24,8 +19,6 @@ export const LogIn = () => {
   });
 
   const [error, setError] = useState(null);
-
-  const [customer, setCustomer] = useState(null);
 
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -43,14 +36,40 @@ export const LogIn = () => {
       } else {
         setError(null);
 
-        setCustomer(result.data.response);
+        localStorage.setItem('id', result.data.response.id);
+
+        localStorage.setItem('firstName', result.data.response.firstName);
+
+        localStorage.setItem('lastName', result.data.response.lastName);
+
+        localStorage.setItem('email', result.data.response.email);
+
+        localStorage.setItem('address', result.data.response.address);
+
+        localStorage.setItem('city', result.data.response.city);
+
+        localStorage.setItem('zipCode', result.data.response.zipCode);
+
+        localStorage.setItem('country', result.data.response.country);
+
+        localStorage.setItem('phone', result.data.response.phone);
+
+        localStorage.setItem('token', result.data.response.token);
 
         swal('Good job!', 'You clicked the button!', 'success');
 
-        // navigate('/home');
+        navigate('/home');
       }
     });
   };
+
+  // for (let key in localStorage) {
+  //   console.log(key, localStorage.getItem(key));
+  // }
+
+  // import CryptoJS from 'crypto-js';
+
+  // const { VITE_APP_JWT, VITE_APP_CRYPTO_KEY } = import.meta.env;
 
   // if (customer !== null) {
   //   try {

@@ -57,7 +57,7 @@ const logUp = async (req, res) => {
     if (verifyCustomer) {
       return res
         .status(409)
-        .json({ message: 'The email is already registered' });
+        .json({ message: 'The email is already registered.' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -74,9 +74,7 @@ const logUp = async (req, res) => {
       phone,
     });
 
-    const token = jwt.sign({ id: newCustomer.id }, JWT, {
-      expiresIn: '12h',
-    });
+    const token = jwt.sign({ id: newCustomer.id }, JWT);
 
     const response = {
       id: CryptoJS.AES.encrypt(newCustomer.id, CRYPTO_KEY).toString(),
@@ -106,13 +104,11 @@ const logUp = async (req, res) => {
       token,
     };
 
-    return res
-      .status(201)
-      .json({ message: 'Successful registration', response });
+    return res.status(201).json({ message: 'Successful log up.', response });
   } catch (error) {
     return res
       .status(400)
-      .json({ message: 'Failed registration', error: error.message });
+      .json({ message: 'Failed log up.', error: error.message });
   }
 };
 
@@ -153,9 +149,7 @@ const logIn = async (req, res) => {
       return res.status(401).json({ message: 'The password is incorrect.' });
     }
 
-    const token = jwt.sign({ id: verifyCustomer.id }, JWT, {
-      expiresIn: '12h',
-    });
+    const token = jwt.sign({ id: verifyCustomer.id }, JWT);
 
     const response = {
       id: CryptoJS.AES.encrypt(verifyCustomer.id, CRYPTO_KEY).toString(),
@@ -204,6 +198,4 @@ const logIn = async (req, res) => {
 
 const logInGoogle = async (req, res) => {};
 
-const logOut = async (req, res) => {};
-
-module.exports = { logUp, logupGoogle, logIn, logInGoogle, logOut };
+module.exports = { logUp, logupGoogle, logIn, logInGoogle };
