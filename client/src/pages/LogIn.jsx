@@ -24,8 +24,6 @@ export const LogIn = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  console.log(input);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -38,12 +36,52 @@ export const LogIn = () => {
       } else {
         setError(null);
 
+        localStorage.setItem('id', result.data.response.id);
+
+        localStorage.setItem('firstName', result.data.response.firstName);
+
+        localStorage.setItem('lastName', result.data.response.lastName);
+
+        localStorage.setItem('email', result.data.response.email);
+
+        localStorage.setItem('address', result.data.response.address);
+
+        localStorage.setItem('city', result.data.response.city);
+
+        localStorage.setItem('zipCode', result.data.response.zipCode);
+
+        localStorage.setItem('country', result.data.response.country);
+
+        localStorage.setItem('phone', result.data.response.phone);
+
+        localStorage.setItem('token', result.data.response.token);
+
         swal('Good job!', 'You clicked the button!', 'success');
 
         navigate('/home');
       }
     });
   };
+
+  // for (let key in localStorage) {
+  //   console.log(key, localStorage.getItem(key));
+  // }
+
+  // import CryptoJS from 'crypto-js';
+
+  // const { VITE_APP_JWT, VITE_APP_CRYPTO_KEY } = import.meta.env;
+
+  // if (customer !== null) {
+  //   try {
+  //     const bytes = CryptoJS.AES.decrypt(customer.email, VITE_APP_CRYPTO_KEY);
+
+  //     const decryptedId = bytes.toString(CryptoJS.enc.Utf8);
+
+  //     console.log(decryptedId);
+  //   } catch (error) {
+  //     console.log('Error al desencriptar:', error);
+  //   }
+  // }
 
   return (
     <>
@@ -73,7 +111,7 @@ export const LogIn = () => {
             </button>
             {error && <span>{error}</span>}
           </form>
-          <Link to="/register">Register</Link>
+          <Link to="/logup">Log Up</Link>
         </div>
       </div>
     </>
